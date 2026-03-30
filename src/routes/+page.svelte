@@ -4,11 +4,7 @@
   import bl from "$lib/assets/bl-512.png";
   import br from "$lib/assets/br-512.png";
 
-  const liste = new Array(5).fill(true).map((_, i) => ({
-    title: `Geschenk #${i + 1}`,
-    image: `https://placehold.co/600x400?text=Geschenk ${i + 1}`,
-    text: `Ein kurzer Text zu Geschenk #${i + 1} mit maximal zwei Zeilen auf Smartphone Größe`,
-  }))
+  const { data } = $props();
 </script>
 
 <div class="relative min-h-screen w-full overflow-hidden bg-slate-50">
@@ -28,20 +24,20 @@
       Katrin & Stephan
     </h2>
     <main class="text-lg text-slate-800 max-w-md space-y-8 mt-8">
-      {#each liste as item}
+      {#each data.posts as item}
         <section class="space-y-1">
           <h3 class="lg:text-3xl text-xl green uppercase font-medium">
-            {item.title}
+            {item.meta.title}
           </h3>
           <img src={item.image} alt={item.title} />
-          <p class="leading-tight">{@html item.text}</p>
+          <p class="leading-tight"><item.content /></p>
         </section>
       {/each}
     </main>
   </div>
 </div>
 
-<style lang="scss">
+<style>
   @reference "tailwindcss";
 
   .corner {
