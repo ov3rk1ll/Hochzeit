@@ -21,6 +21,7 @@
     rel="stylesheet"
   />
   <title>Hochzeit Katrin & Stephan</title>
+  <script defer src="https://u.nordalp.com/script.js" data-website-id="578c54e7-71b7-4404-bfce-50aa0f0231df"></script>
 </svelte:head>
 
 <div class="relative min-h-screen w-full overflow-hidden bg-slate-50">
