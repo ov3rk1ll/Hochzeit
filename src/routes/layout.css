@@ -10,6 +10,16 @@ body {
   scrollbar-width: thin;
 }
 
-.green {
+.text-green {
+  color: #5e7560;
+}
+
+.h3 {
+  @apply lg:text-3xl text-xl uppercase font-medium;
+  color: #5e7560;
+}
+
+.anchor {
+  @apply underline;
   color: #5e7560;
 }
