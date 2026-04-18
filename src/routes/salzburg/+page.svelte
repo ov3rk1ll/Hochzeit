@@ -24,8 +24,8 @@
       Euer Kommen ist für uns das schönste Geschenk!<br />Wenn ihr uns
       zusätzlich eine Freude machen wollt, freuen wir uns über einen Beitrag zu
       unseren geplanten Anschaffungen.<br />
-      Mehr Informationen zu unseren Wünschen findet ihr
-      <a href="/geschenke" target="_blank" class="anchor">hier</a>.
+      <span class="print:hidden">Mehr Informationen zu unseren Wünschen findet ihr
+      <a href="/geschenke" target="_blank" class="anchor">hier</a>.</span>
     </p>
   </section>
   <section>
