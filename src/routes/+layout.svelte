@@ -40,6 +40,6 @@
   @reference "tailwindcss";
 
   .corner {
-    @apply fixed w-48 md:w-64 lg:w-96 opacity-40 z-20;
+    @apply fixed w-48 md:w-64 lg:w-96 opacity-40;
   }
 </style>
