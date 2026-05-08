@@ -2,8 +2,11 @@
   import Content from "$lib/Content.svelte";
 </script>
 
-<Content title="Katrin & Stephan" subtitle="26. Juli 2026">
-
+<Content
+  title="Katrin & Stephan"
+  subtitle="26. Juli 2026"
+  countdownDate={new Date(2026, 6, 26, 11, 30, 0, 0)}
+>
   <section>
     <h3 class="h3">Ablauf</h3>
     <p>11:30 Uhr: Sektempfang</p>
