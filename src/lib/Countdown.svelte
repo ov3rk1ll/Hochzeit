@@ -7,9 +7,9 @@
   };
 
   export type CountdownProps = {
-    value: number | CountdownValues;
+    value: CountdownValues;
     autoStart?: boolean;
-    children: Snippet<[time: CountdownState, seconds: number]>;
+    children: Snippet<[time: CountdownState]>;
     onTick?: (time: CountdownState, seconds: number) => void;
     onStart?: () => void;
     onFinish?: () => void;
@@ -29,15 +29,19 @@
   export type CountdownState = Omit<CountdownTimeState, "totalSeconds">;
 
   export const diffTime = (from: Date, to: Date): CountdownTimeState => {
-    let start = new Date(from);
-    let end = new Date(to);
-
-    if (start > end) [start, end] = [end, start];
-
-    // Anchor at start and advance calendar units without overshooting end
+    if (from > to) {
+      return {
+        weeks: "",
+        days: "",
+        hours: "",
+        minutes: "",
+        seconds: "",
+        totalSeconds: 0,
+      };
+    }
 
     // Remainder
-    let remainderMs = end.getTime() - start.getTime();
+    let remainderMs = to.getTime() - from.getTime();
     const msPerSecond = 1000;
     const msPerMinute = 60 * msPerSecond;
     const msPerHour = 60 * msPerMinute;
@@ -58,7 +62,7 @@
     days = days % 7;
 
     const pad = (n: number) => n.toString(); /*.padStart(2, "0");*/
-    const totalSeconds = Math.floor((end.getTime() - start.getTime()) / 1000);
+    const totalSeconds = Math.floor((to.getTime() - from.getTime()) / 1000);
 
     return {
       // years: pad(years),
@@ -95,11 +99,7 @@
   });
 
   const interval = 1000;
-  let seconds = $state(
-    typeof value === "number"
-      ? value
-      : diffTime(value.from, value.to).totalSeconds,
-  );
+  let seconds = $derived(diffTime(value.from, value.to).totalSeconds);
   let timer: ReturnType<typeof setInterval> | null = null;
 
   $effect(() => {
@@ -147,24 +147,7 @@
     start();
   };
 
-  const startTime = $derived.by(() => {
-    if (typeof value === "object") {
-      return value.from;
-    }
-
-    return new Date();
-  });
-
-  const endTime = $derived.by(() => {
-    const date = new Date(startTime);
-    date.setTime(date.getTime() + seconds * 1000);
-
-    return date;
-  });
-
-  const time = $derived.by<CountdownState>(() => {
-    return diffTime(endTime, startTime);
-  });
+  const time = $derived(diffTime(value.from, value.to));
 </script>
 
-{@render children(time, seconds)}
+{@render children(time)}

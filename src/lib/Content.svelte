@@ -22,7 +22,7 @@
   {#if countdownDate}
     <section class="space-x-0.5 lg:text-2xl text-xl whitespace-nowrap">
       <Countdown autoStart value={{ from, to: countdownDate }}>
-        {#snippet children(time, seconds)}
+        {#snippet children(time)}
           {#if time.totalSeconds > 0}
             {#if time.weeks > 1}
               <span>{time.weeks} Wochen</span>
